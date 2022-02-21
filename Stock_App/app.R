@@ -39,11 +39,11 @@ sidebar<-dashboardSidebar(
 
 body<-dashboardBody(
   shinyDashboardThemes(
-    theme = "grey_light"
+    theme = "grey_dark"
   ),
     tabItems(
         tabItem(tabName = "Dash",
-                box(width = 12,height = 500,
+                box(width = 12,height = 500,background="aqua",
                     dygraphOutput("plt4"))
                 
                 )
