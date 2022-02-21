@@ -1,0 +1,13 @@
+name: Stock_App
+title: Stock_App
+username:
+account: venturemuia
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 4890167
+bundleId: 5600592
+url: https://venturemuia.shinyapps.io/Stock_App/
+when: 1645419460.8494
+lastSyncTime: 1645419460.8494
+asMultiple: FALSE
+asStatic: FALSE

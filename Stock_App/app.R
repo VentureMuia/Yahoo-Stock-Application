@@ -4,18 +4,12 @@ library(shinyWidgets)
 library(shiny)
 library(plotly)
 library(tidyquant)
-library(modeltime)
-library(tidymodels)
 library(tidyverse)
-library(timetk)
-library(lubridate)
 library(dygraphs)
-library(forecast)
-library(forecastHybrid)
-
+library(prophet)
 
  # Setting the theme
-theme_set(theme_test())
+theme_set(theme_tq())
 
 # stocks
 st<-c("F","AAPL","SPCE","BAC","WFC","PCG","T",
@@ -27,7 +21,6 @@ header<-dashboardHeader(title = "Yahoo Stocks Forecast",
 
 sidebar<-dashboardSidebar(
     sidebarMenu(id="sidebarid",
-                menuitem("About App",tabName="app",icon=icon("laptop")),
                 menuItem("dash",tabName = "Dash",icon=icon("chart-line")),
                 conditionalPanel(condition = "input.sidebarid=='Dash'",
                                  selectInput("stock","Select asset",selected="AAPL",
@@ -44,23 +37,12 @@ sidebar<-dashboardSidebar(
                                 
                                  )
                 )
-    
 )
 
 body<-dashboardBody(
     tabItems(
-        tabItem(tabName = "app",
-                p("This app predicts the future behaviour of the Stock using facebook time series algorithm called prophet.
-                  You must select your options and click apply button. 
-                  The model will be updated according to the entered value. 
-                  You should install and load both libraries required packages before running locally this app in R.
-                  At this point you will be able to run the app locally running runApp('ShinyApp') from the folder containing the files app.R."
-                                                                     )
-                ),
         tabItem(tabName = "Dash",
-                box(width = 12,
-                    plotlyOutput("plt1")),
-                box(width = 12,
+                box(width = 12,height = 500,
                     dygraphOutput("plt4"))
                 
                 )
@@ -81,14 +63,7 @@ server<-function(input,output,session){
       return(df)
     })
     
-    output$plt1<-renderPlotly({
-      s<-data() %>% plot_time_series(date,close)
-      ggplotly(s)%>% config(displayModeBar = F)
-    })
-    
-    
     output$plt4<-renderDygraph({
-      library(prophet)
       df<-data()
       names(df)<-c("ds","y")
       m<-prophet(df,daily.seasonality = T)
