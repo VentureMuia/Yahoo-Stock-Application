@@ -7,9 +7,7 @@ library(tidyquant)
 library(tidyverse)
 library(dygraphs)
 library(prophet)
-
- # Setting the theme
-theme_set(theme_tq())
+library(dashboardthemes)
 
 # stocks
 st<-c("F","AAPL","SPCE","BAC","WFC","PCG","T",
@@ -40,6 +38,9 @@ sidebar<-dashboardSidebar(
 )
 
 body<-dashboardBody(
+  shinyDashboardThemes(
+    theme = "grey_light"
+  ),
     tabItems(
         tabItem(tabName = "Dash",
                 box(width = 12,height = 500,
@@ -73,7 +74,6 @@ server<-function(input,output,session){
     })
     
 }
-
 
 shinyApp(UI,server)
 

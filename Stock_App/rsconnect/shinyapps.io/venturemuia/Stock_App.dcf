@@ -5,9 +5,9 @@ account: venturemuia
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 4890167
-bundleId: 5600592
+bundleId: 5600715
 url: https://venturemuia.shinyapps.io/Stock_App/
-when: 1645419460.8494
-lastSyncTime: 1645419460.8494
+when: 1645422966.57015
+lastSyncTime: 1645422966.57015
 asMultiple: FALSE
 asStatic: FALSE
